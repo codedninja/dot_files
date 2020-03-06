@@ -1,0 +1,346 @@
+[config]
+background = ${xrdb:background:#222}
+foreground = ${xrdb:foreground:#222}
+highlight = ${xrdb:cursorColor:#222}
+visible = ${xrdb:color15:#222}
+bar-padding = 5
+font-0 = SF Pro Display;size=12;
+font-1 = FuraCode Nerd Font;size=12;
+line-size = 2
+
+; ===========================================================
+; Top bar on Dell Monitor (Left)
+; ===========================================================
+[bar/topdell]
+monitor=DVI-I-1
+width = 100%
+height = 24
+
+spacing = 3
+
+background = ${config.background} 
+foreground = ${config.foreground}
+
+padding = ${config.bar-padding}
+
+font-0 = SF Pro Display:size=11;
+font-1 = FuraCode Nerd Font:size=11;
+
+enable-ipc = true
+
+modules-left =  wired-network
+;modules-center = previous spotify next
+modules-center = test
+modules-right = pulseaudio2 pulseaudio cpu memory
+
+; ===========================================================
+; Bottom bar on Dell Monitor (Left)
+; ===========================================================
+[bar/bottomdell]
+monitor=DVI-I-1
+bottom = true
+width = 100%
+height = 24
+
+tray-position = right
+
+background = ${config.background}
+foreground = ${config.foreground}
+
+padding = 5
+
+font-0 = SF Pro Display:size=11;
+font-1 = FuraCode Nerd Font:size=11;
+
+line-size = ${config.line-size}
+
+modules-left = i3
+modules-right = date tray
+
+; ===========================================================
+; Top bar on Acer Monitor (Center)
+; ===========================================================
+[bar/topacer]
+monitor=DVI-D-0
+width = 100%
+height = 24
+
+spacing = 3
+
+background = ${config.background} 
+foreground = ${config.foreground}
+
+padding = ${config.bar-padding}
+
+font-0 = SF Pro Display:size=11;
+font-1 = FuraCode Nerd Font:size=11;
+
+modules-left =  wired-network
+;modules-center = previous spotify next
+modules-right = pulseaudio cpu memory
+
+; ===========================================================
+; Bottom bar on Acer Monitor (Center)
+; ===========================================================
+[bar/bottomacer]
+monitor=DVI-D-0
+bottom = true
+width = 100%
+height = 24
+
+background = ${config.background}
+foreground = ${config.foreground}
+
+padding = 5
+
+font-0 = SF Pro Display:size=11;
+font-1 = FuraCode Nerd Font:size=11;
+
+line-size = ${config.line-size}
+
+modules-left = i3
+modules-right = date
+
+; ===========================================================
+; Top bar on Dell Monitor (Right)
+; ===========================================================
+[bar/topright]
+monitor=HDMI-0
+width = 100%
+height = 24
+
+spacing = 3
+
+background = ${config.background} 
+foreground = ${config.foreground}
+
+padding = ${config.bar-padding}
+
+font-0 = SF Pro Display:size=11;
+font-1 = FuraCode Nerd Font:size=11;
+
+modules-left =  wired-network
+;modules-center = previous spotify next
+modules-right = pulseaudio cpu memory
+
+; ===========================================================
+; Bottom bar on Dell Monitor (Right)
+; ===========================================================
+[bar/bottomright]
+monitor=HDMI-0
+bottom = true
+width = 100%
+height = 24
+
+background = ${config.background}
+foreground = ${config.foreground}
+
+padding = 5
+
+font-0 = SF Pro Display:size=11;
+font-1 = FuraCode Nerd Font:size=11;
+
+line-size = ${config.line-size}
+
+modules-left = i3
+modules-right = battery date
+
+
+; ===========================================================
+; ===========================================================
+; Modules
+; ===========================================================
+; ===========================================================
+[module/i3]
+type = internal/i3
+
+pin-workspaces = true
+
+strip-wsnumbers = true
+
+fuzzy-match = true
+
+ws-icon-0 = ;
+ws-icon-1 = ;
+ws-icon-2 = ;
+ws-icon-3 = ;
+ws-icon-4 = ;
+ws-icon-default = 
+
+format = <label-state> <label-mode>
+
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #ff0000
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused = %name%
+label-focused-foreground = #ffffff
+label-focused-background = 
+label-focused-underline = ${config.highlight} 
+label-focused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-unfocused = %name%
+label-unfocused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-visible = %name%
+label-visible-underline = ${config.visible}
+label-visible-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-urgent = %name%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 4
+
+; Separator in between workspaces
+label-separator = 
+label-separator-padding = 2
+label-separator-foreground = #ffb52a
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <label> <ramp-coreload> %{O10}
+label = CPU
+
+ramp-coreload-0 = ▁
+ramp-coreload-0-font = 2
+ramp-coreload-0-foreground = #aaff77
+ramp-coreload-1 = ▂
+ramp-coreload-1-font = 2
+ramp-coreload-1-foreground = #aaff77
+ramp-coreload-2 = ▃
+ramp-coreload-2-font = 2
+ramp-coreload-2-foreground = #aaff77
+ramp-coreload-3 = ▄
+ramp-coreload-3-font = 2
+ramp-coreload-3-foreground = #aaff77
+ramp-coreload-4 = ▅
+ramp-coreload-4-font = 2
+ramp-coreload-4-foreground = #fba922
+ramp-coreload-5 = ▆
+ramp-coreload-5-font = 2
+ramp-coreload-5-foreground = #fba922
+ramp-coreload-6 = ▇
+ramp-coreload-6-font = 2
+ramp-coreload-6-foreground = #ff5555
+ramp-coreload-7 = █
+ramp-coreload-7-font = 2
+ramp-coreload-7-foreground = #ff5555
+
+[module/date]
+type = internal/date
+date = %%{F#99}%Y-%m-%d%%{F-} %%{F#fff}%H:%M%%{F-}
+date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+
+[module/memory]
+type = internal/memory
+format = <label> <ramp-used> %{O10}
+label = RAM
+ramp-used-0-foreground = #aaff77
+ramp-used-1-foreground = #aaff77
+ramp-used-2-foreground = #aaff77
+ramp-used-3-foreground = #aaff77
+ramp-used-4-foreground = #fba922
+ramp-used-5-foreground = #fba922
+ramp-used-6-foreground = #ff5555
+ramp-used-7-foreground = #ff5555
+
+ramp-used-0 = ▁
+ramp-used-1 = ▂
+ramp-used-2 = ▃
+ramp-used-3 = ▄
+ramp-used-4 = ▅
+ramp-used-5 = ▆
+ramp-used-6 = ▇
+ramp-used-7 = █
+
+[module/wired-network]
+type = internal/network
+interface = enp4s0
+interval = 3.0
+
+label-connected = %local_ip%
+label-disconnected-foreground = #66
+
+[module/clock]
+type = internal/date
+interval = 2
+date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = 蓼 <label-volume> %{O10}
+
+label-muted = ﱝ muted %{O10}
+label-muted-foreground = #666
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+sink = alsa_output.usb-Focusrite_Scarlett_2i2_USB-00.analog-stereo
+
+interval = 5
+
+[module/spotify]
+type = custom/script
+interval = 2
+format = <label>
+exec-if = python3 /home/codedninja/Code/spotify/python/spotifyd.py --is-active
+exec = python3 /home/codedninja/Code/spotify/python/spotifyd.py --currently-playing
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+
+[module/previous]
+type = custom/script
+interval = 2
+format = "<label>"
+format-padding = 5
+; Previous song icon
+exec = echo ""
+; Check if spotify is running before displaying the icon
+exec-if = python3 /home/codedninja/Code/spotify/python/spotifyd.py --is-active
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+
+[module/next]
+type = custom/script
+interval = 2
+format = "<label>"
+format-padding = 5
+; Next song icon
+exec = echo ""
+; Check if spotify is running before displaying the icon
+exec-if = python3 /home/codedninja/Code/spotify/python/spotifyd.py --is-active
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+
+[module/test]
+type = custom/ipc
+
+hook-0 = echo "Playing"
+hook-1 = echo "Paused"
+hook-2 = echo "Stopped"
+inital = 2
