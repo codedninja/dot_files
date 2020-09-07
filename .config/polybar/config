@@ -1,20 +1,40 @@
 [config]
 background = ${xrdb:background:#222}
 foreground = ${xrdb:foreground:#222}
-highlight = ${xrdb:cursorColor:#222}
-visible = ${xrdb:color15:#222}
+cursorColor = ${xrdb:cursorColor:#222}
+color0 = ${xrdb:color0}
+color1 = ${xrdb:color1}
+color2 = ${xrdb:color2}
+color3 = ${xrdb:color3}
+color4 = ${xrdb:color4}
+color5 = ${xrdb:color5}
+color6 = ${xrdb:color6}
+color7 = ${xrdb:color7}
+color8 = ${xrdb:color8}
+color9 = ${xrdb:color9}
+color10 = ${xrdb:color10}
+color11 = ${xrdb:color11}
+color12 = ${xrdb:color12}
+color13 = ${xrdb:color13}
+color14 = ${xrdb:color14}
+color15 = ${xrdb:color15}
 bar-padding = 5
 font-0 = SF Pro Display;size=12;
 font-1 = FuraCode Nerd Font;size=12;
-line-size = 2
+line-size = 1
 
+line-color = #00BCD4
 ; ===========================================================
-; Top bar on Dell Monitor (Left)
+; Top Left
 ; ===========================================================
-[bar/topdell]
-monitor=DVI-I-1
-width = 100%
-height = 24
+[bar/topleft]
+monitor=${env:MONITOR}
+width = 300px
+height = 30px
+offset-x = 10px
+offset-y = 5px
+radius = 12
+fixed-center = true
 
 spacing = 3
 
@@ -26,90 +46,26 @@ padding = ${config.bar-padding}
 font-0 = SF Pro Display:size=11;
 font-1 = FuraCode Nerd Font:size=11;
 
-enable-ipc = true
+border-color = ${config.line-color}
 
-modules-left =  wired-network
-;modules-center = previous spotify next
-modules-center = test
-modules-right = pulseaudio2 pulseaudio cpu memory
+wm-restack = i3
+override-redirect = true
 
-; ===========================================================
-; Bottom bar on Dell Monitor (Left)
-; ===========================================================
-[bar/bottomdell]
-monitor=DVI-I-1
-bottom = true
-width = 100%
-height = 24
-
-tray-position = right
-
-background = ${config.background}
-foreground = ${config.foreground}
-
-padding = 5
-
-font-0 = SF Pro Display:size=11;
-font-1 = FuraCode Nerd Font:size=11;
-
-line-size = ${config.line-size}
-
-modules-left = i3
-modules-right = date tray
+modules-left =  i3
 
 ; ===========================================================
-; Top bar on Acer Monitor (Center)
-; ===========================================================
-[bar/topacer]
-monitor=DVI-D-0
-width = 100%
-height = 24
-
-spacing = 3
-
-background = ${config.background} 
-foreground = ${config.foreground}
-
-padding = ${config.bar-padding}
-
-font-0 = SF Pro Display:size=11;
-font-1 = FuraCode Nerd Font:size=11;
-
-modules-left =  wired-network
-;modules-center = previous spotify next
-modules-right = pulseaudio cpu memory
-
-; ===========================================================
-; Bottom bar on Acer Monitor (Center)
-; ===========================================================
-[bar/bottomacer]
-monitor=DVI-D-0
-bottom = true
-width = 100%
-height = 24
-
-background = ${config.background}
-foreground = ${config.foreground}
-
-padding = 5
-
-font-0 = SF Pro Display:size=11;
-font-1 = FuraCode Nerd Font:size=11;
-
-line-size = ${config.line-size}
-
-modules-left = i3
-modules-right = date
-
-; ===========================================================
-; Top bar on Dell Monitor (Right)
+; Top Left
 ; ===========================================================
 [bar/topright]
-monitor=HDMI-0
-width = 100%
-height = 24
+monitor=${env:MONITOR}
+width = 230px
+height = 30px
+offset-x = 100%:-240px
+offset-y = 5px
+radius = 12
+fixed-center = true
 
-spacing = 3
+;spacing = 3
 
 background = ${config.background} 
 foreground = ${config.foreground}
@@ -119,18 +75,26 @@ padding = ${config.bar-padding}
 font-0 = SF Pro Display:size=11;
 font-1 = FuraCode Nerd Font:size=11;
 
-modules-left =  wired-network
-;modules-center = previous spotify next
-modules-right = pulseaudio cpu memory
+border-color = ${config.line-color}
+enable-ipc = true
 
+wm-restack = i3
+override-redirect = true
+
+modules-left = status
+modules-right = pulseaudio battery date
+
+;; ===========================================================
+; Stats bar
 ; ===========================================================
-; Bottom bar on Dell Monitor (Right)
-; ===========================================================
-[bar/bottomright]
-monitor=HDMI-0
-bottom = true
-width = 100%
-height = 24
+[bar/stats]
+monitor=${env:MONITOR}
+width = 300px 
+height = 30px
+offset-x = 100%:-550px
+offset-y = 5px
+radius = 12
+fixed-center = true
 
 background = ${config.background}
 foreground = ${config.foreground}
@@ -142,14 +106,41 @@ font-1 = FuraCode Nerd Font:size=11;
 
 line-size = ${config.line-size}
 
-modules-left = i3
-modules-right = battery date
+wm-restack = i3
+override-redirect = true
 
+modules-left = temperature cpu memory filesystem
 
+;===========================================================
+; Spotify bar
 ; ===========================================================
+[bar/spotify]
+monitor=${env:MONITOR}
+width = 350px 
+height = 30px
+offset-x = 50%:-175px
+offset-y = 5px
+radius = 12
+fixed-center = true
+
+background = ${config.background}
+foreground = ${config.foreground}
+
+padding = 5
+
+font-0 = SF Pro Display:size=11;
+font-1 = FuraCode Nerd Font:size=11;
+
+line-size = ${config.line-size}
+
+wm-restack = i3
+override-redirect = true
+enable-ipc = true
+
+modules-center = spotify
+
 ; ===========================================================
 ; Modules
-; ===========================================================
 ; ===========================================================
 [module/i3]
 type = internal/i3
@@ -169,130 +160,62 @@ ws-icon-default =
 
 format = <label-state> <label-mode>
 
-; Available tokens:
-;   %mode%
-; Default: %mode%
 label-mode = %mode%
 label-mode-padding = 2
-label-mode-background = #ff0000
+label-mode-background = ${config.background} 
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
 label-focused = %name%
-label-focused-foreground = #ffffff
+label-focused-foreground = ${config.foreground} 
 label-focused-background = 
-label-focused-underline = ${config.highlight} 
+label-focused-underline = ${config.color2} 
 label-focused-padding = 4
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
 label-unfocused = %name%
 label-unfocused-padding = 4
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
 label-visible = %name%
-label-visible-underline = ${config.visible}
+label-visible-underline = ${config.color2}
 label-visible-padding = 4
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
 label-urgent = %name%
-label-urgent-foreground = #000000
-label-urgent-background = #bd2c40
+label-urgent-foreground = ${config.foreground}
+label-urgent-background = ${config.background}
 label-urgent-padding = 4
 
-; Separator in between workspaces
 label-separator = 
 label-separator-padding = 2
-label-separator-foreground = #ffb52a
+label-separator-foreground = ${config.foreground}
 
 [module/cpu]
 type = internal/cpu
 interval = 0.5
-format = <label> <ramp-coreload> %{O10}
-label = CPU
-
-ramp-coreload-0 = ▁
-ramp-coreload-0-font = 2
-ramp-coreload-0-foreground = #aaff77
-ramp-coreload-1 = ▂
-ramp-coreload-1-font = 2
-ramp-coreload-1-foreground = #aaff77
-ramp-coreload-2 = ▃
-ramp-coreload-2-font = 2
-ramp-coreload-2-foreground = #aaff77
-ramp-coreload-3 = ▄
-ramp-coreload-3-font = 2
-ramp-coreload-3-foreground = #aaff77
-ramp-coreload-4 = ▅
-ramp-coreload-4-font = 2
-ramp-coreload-4-foreground = #fba922
-ramp-coreload-5 = ▆
-ramp-coreload-5-font = 2
-ramp-coreload-5-foreground = #fba922
-ramp-coreload-6 = ▇
-ramp-coreload-6-font = 2
-ramp-coreload-6-foreground = #ff5555
-ramp-coreload-7 = █
-ramp-coreload-7-font = 2
-ramp-coreload-7-foreground = #ff5555
+format = <label>% %{O10}
+label =  %percentage%
 
 [module/date]
 type = internal/date
-date = %%{F#99}%Y-%m-%d%%{F-} %%{F#fff}%H:%M%%{F-}
-date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+date = %a %e %b %k:%M
 
 [module/memory]
 type = internal/memory
-format = <label> <ramp-used> %{O10}
-label = RAM
-ramp-used-0-foreground = #aaff77
-ramp-used-1-foreground = #aaff77
-ramp-used-2-foreground = #aaff77
-ramp-used-3-foreground = #aaff77
-ramp-used-4-foreground = #fba922
-ramp-used-5-foreground = #fba922
-ramp-used-6-foreground = #ff5555
-ramp-used-7-foreground = #ff5555
-
-ramp-used-0 = ▁
-ramp-used-1 = ▂
-ramp-used-2 = ▃
-ramp-used-3 = ▄
-ramp-used-4 = ▅
-ramp-used-5 = ▆
-ramp-used-6 = ▇
-ramp-used-7 = █
+format = <label> %{O10}
+label =  %mb_used%
 
 [module/wired-network]
 type = internal/network
 interface = enp4s0
 interval = 3.0
 
+format-connected =  <label-connected> %{O10}
 label-connected = %local_ip%
-label-disconnected-foreground = #66
 
-[module/clock]
-type = internal/date
-interval = 2
-date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+[module/wireless-network]
+type = internal/network
+interface = wlps4s0
+interval = 3.0
+
+format-connected =  <label-connected>
+label-connected = %local_ip%
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -308,39 +231,60 @@ sink = alsa_output.usb-Focusrite_Scarlett_2i2_USB-00.analog-stereo
 interval = 5
 
 [module/spotify]
-type = custom/script
-interval = 2
-format = <label>
-exec-if = python3 /home/codedninja/Code/spotify/python/spotifyd.py --is-active
-exec = python3 /home/codedninja/Code/spotify/python/spotifyd.py --currently-playing
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
-
-[module/previous]
-type = custom/script
-interval = 2
-format = "<label>"
-format-padding = 5
-; Previous song icon
-exec = echo ""
-; Check if spotify is running before displaying the icon
-exec-if = python3 /home/codedninja/Code/spotify/python/spotifyd.py --is-active
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
-
-[module/next]
-type = custom/script
-interval = 2
-format = "<label>"
-format-padding = 5
-; Next song icon
-exec = echo ""
-; Check if spotify is running before displaying the icon
-exec-if = python3 /home/codedninja/Code/spotify/python/spotifyd.py --is-active
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
-
-[module/test]
 type = custom/ipc
 
-hook-0 = echo "Playing"
+hook-0 = cat ~/.scripts/spotify/currently-playing
 hook-1 = echo "Paused"
-hook-2 = echo "Stopped"
-inital = 2
+hook-2 = echo ""
+inital = 3
+
+click-middle = polybar-msg -p %pid% hook test 2
+
+[module/filesystem]
+type = internal/fs
+
+; Mountpoints to display
+mount-0 = /
+
+label-mounted =  %used%
+
+[module/temperature]
+type = internal/temperature
+
+thermal-zone = 0
+
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input
+
+format =  <label> %{O10}
+
+label-warn-foreground = ${config.color1}
+
+[module/battery]
+type = internal/battery
+
+; This is useful in case the battery never reports 100% charge
+full-at = 99
+
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = BAT0
+adapter = ADP1
+
+; If an inotify event haven't been reported in this many
+; seconds, manually poll for new values.
+;
+; Needed as a fallback for systems that don't report events
+; on sysfs/procfs.
+;
+; Disable polling by setting the interval to 0.
+;
+; Default: 5
+poll-interval = 5
+
+;; =================== Stats MODULE ============================
+[module/status]
+type = custom/script
+
+exec = echo "%{F#79e6f3}  %{F-}"
+
+click-left = ~/.config/polybar/toggleStatsBar.sh

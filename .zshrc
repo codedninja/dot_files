@@ -88,3 +88,6 @@ export GOPATH=$HOME/go
 
 source $HOME/.cargo/env
 # source /home/codedninja/.local/bin/virtualenvwrapper.sh
+
+# Dotfile management
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'

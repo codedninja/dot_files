@@ -1,9 +1,14 @@
 * {
-  background-color: #282C33;
-  border-color: #2e343f;
-  text-color: #8ca0aa;
+  background-color: #193C4D;
+  border-color: #00BCD4;
+  text-color: #ECEFF1;
   spacing: 0;
   width: 512px;
+}
+
+
+mainbox {
+    border: 2px;
 }
 
 inputbar {
@@ -39,5 +44,5 @@ element {
 }
 
 element selected {
-  background-color: #2e343f;
+  background-color: #23546C;
 }
