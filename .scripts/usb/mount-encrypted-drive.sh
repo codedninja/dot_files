@@ -1,12 +1,13 @@
 #!/bin/bash
-#SUDO_ASKPASS=~/.scripts/dpass.sh sudo -A $(dmenu_path | dmenu)
 
-#option=$(lsblk -pldno NAME,SIZE | dmenu)
-#disk=$(echo $option | awk '{print $1}')
+DRIVE=$(ls /dev/sd* | grep -v 'sda' | rofi -dmenu -no-fixed-num-lines -p "Select Drive to Mount")
 
-sudo cryptsetup luksOpen /dev/sdc USBDrive
-sudo mount /dev/mapper/USBDrive /USBDrive
+if [ -n "$DRIVE" ]; then
+    UUID=$(lsblk --noheadings --raw -o UUID,PATH | grep "$DRIVE" | cut -f1 -d" ")
 
-# Unmount mount first
-#~/.scripts/dpass.sh sudo -A $(umount /USBDrive)
-#~/.scripts/dpass.sh sudo -A $(cryptsetup luksClose USBDrive)
+    PASS=$(rofi -dmenu -password -i -no-fixed-num-lines -p "USB Password:")
+
+    pkexec bash -c "echo -n $PASS | cryptsetup luksOpen $DRIVE luks-$UUID -d - && mount /dev/mapper/luks-$UUID /mnt/USB"
+
+    notify-send "Drive has been mounted!"
+fi
