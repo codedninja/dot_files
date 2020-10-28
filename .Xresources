@@ -12,8 +12,8 @@ XTerm.vt100.metaSendsEscape: true
 XTerm.vt100.backarrowKey: false
 XTerm.ttyModes: erase ^?
 XTerm.vt100.faceName: SFMono Nerd Font:size=11:antialias=true
-XTerm*background:        #222D31
-XTerm*foreground:        #d8d8d8
+XTerm*background:        #193C4D
+XTerm*foreground:        #ECEFF1
 XTerm*pointerColor:      #1ABB9B
 XTerm*faceName:          Fixed
 XTerm*faceSize:          11
@@ -25,7 +25,7 @@ Xcursor.size:                     0
 
 ! special
 *.foreground:   #ECEFF1
-*.background:   #263238
+*.background:   #193C4D
 *.cursorColor:  #607D8B
 
 ! black
@@ -45,6 +45,7 @@ Xcursor.size:                     0
 *.color11:      #FFE57F
 
 ! blue
+!
 *.color4:       #40C4FF
 *.color12:      #80D8FF
 
@@ -78,7 +79,7 @@ URxvt.urgentOnBell: true
 URxvt.depth: 15
 URxvt.iso14755: false
 urxvt*depth: 32
-urxvt*background: [95]#263238
+urxvt*background: [95]#193C4D
 
 ! Remap copy & paste to ctrl+shift+c & ctrl+shift+v
 URxvt.keysym.C-S-0x43: eval:selection_to_clipboard

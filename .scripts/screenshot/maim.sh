@@ -24,7 +24,7 @@
                             if (( ${YMOUSE} <= ${MONY}+${MONH} )); then
                                 # We have found our monitor!
                                 echo woo
-                                maim -g "${MONW}x${MONH}+${MONX}+${MONY}" ~/Pictures/$(date +%s).png
+                                maim -g "${MONW}x${MONH}+${MONX}+${MONY}" ~/Pictures/screenshots/$(date +%s).png
                             exit 0
                             fi
                         fi
@@ -35,7 +35,7 @@
             exit 1
             ;;
         -s)
-            maim -s -b 3 ~/Pictures/$(date +%s).png
+            maim -s -b 3 ~/Pictures/screenshots/$(date +%s).png
             exit 0
     esac
 done

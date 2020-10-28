@@ -6,6 +6,8 @@
 
 config_version: 2
 settings:
+  auto_save.session:
+    global: true
   colors.completion.category.border.bottom:
     global: '#263238'
   colors.completion.category.border.top:
@@ -95,6 +97,10 @@ settings:
     global: '#ECEFF1'
   colors.webpage.bg:
     global: '#ECEFF1'
+  content.notifications:
+    https://www.egirl.gg: false
+    https://www.reddit.com: false
+    https://www.youtube.com: false
   fonts.completion.category:
     global: bold default_size "SF Pro Display"
   fonts.completion.entry:
