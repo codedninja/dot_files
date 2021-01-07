@@ -1,5 +1,5 @@
-
 #!/bin/bash
+DATE=$(date +%s)
 
  for opt in $@
     do
@@ -23,8 +23,7 @@
                         if (( ${YMOUSE} >= ${MONY} )); then
                             if (( ${YMOUSE} <= ${MONY}+${MONH} )); then
                                 # We have found our monitor!
-                                echo woo
-                                maim -g "${MONW}x${MONH}+${MONX}+${MONY}" ~/Pictures/screenshots/$(date +%s).png
+                                maim -g "${MONW}x${MONH}+${MONX}+${MONY}" ~/Pictures/screenshots/$DATE.png && xclip -selection clipboard -t image/png ~/Pictures/screenshots/$DATE.png
                             exit 0
                             fi
                         fi
@@ -35,7 +34,7 @@
             exit 1
             ;;
         -s)
-            maim -s -b 3 ~/Pictures/screenshots/$(date +%s).png
+            maim -s -b 3 ~/Pictures/screenshots/$DATE.png && xclip -selection clipboard -t image/png ~/Pictures/screenshots/$DATE.png
             exit 0
     esac
 done

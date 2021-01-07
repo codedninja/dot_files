@@ -19,8 +19,8 @@ color13 = ${xrdb:color13}
 color14 = ${xrdb:color14}
 color15 = ${xrdb:color15}
 bar-padding = 5
-font-0 = SF Pro Display;size=12;
-font-1 = FuraCode Nerd Font;size=12;
+font-0 = SFProDisplay Nerd Font;size=12;
+font-1 = SF Mono;size=12;
 line-size = 1
 
 line-color = #00BCD4

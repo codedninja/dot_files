@@ -60,7 +60,7 @@ client.placeholder          #00BCD4         #00BCD4         $term_foreground    
 # Auto-Start
 # ===========================================
 # Start up screenlayout
-exec --no-startup-id ~/.screenlayout/2-monitor.sh
+exec --no-startup-id ~/.screenlayout/3-monitor.sh
 
 exec --no-start-up-id pulseaudio
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -68,6 +68,7 @@ exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id ~/.scripts/screenlock/xidle.sh
+#exec --no-startup-id ~/.scripts/decklink/decklink.sh
 
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id ~/.config/polybar/launch.sh
@@ -116,7 +117,7 @@ mode "resize" {
 bindsym $mod+9 exec --no-startup-id blurlock
 
 # Open Terminal
-bindsym $mod+Return exec terminal 
+bindsym $mod+Return exec alacritty 
 
 # Kill Window
 bindsym $mod+Shift+q kill
@@ -137,6 +138,8 @@ bindsym $mod+p --release exec --no-startup-id "~/.scripts/screenshot/maim.sh -m;
 # Selective
 bindsym $mod+Shift+p --release exec --no-startup-id "~/.scripts/screenshot/maim.sh -s; notify-send 'Screenshot taken'"
 
+# Fullscreen
+bindsym $mod+f fullscreen toggle
 
 # Change focus
 bindsym $mod+h focus left

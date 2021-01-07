@@ -7,6 +7,8 @@ Plug 'valloric/youcompleteme'
 
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'ctrlpvim/ctrlp.vim'
+
 call plug#end()
 
 syntax on
@@ -30,6 +32,10 @@ set mouse=a
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+" Golang Lint "
+set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
+autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
 
 " Airline config "
 let g:airline_theme='deus'

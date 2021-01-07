@@ -11,7 +11,7 @@ antigen bundle npm
 antigen bundle python
 antigen bundle sudo
 antigen bundle urltools
-antigen bundle virtualenvwrapper
+antigen bundle kubectl
 
 # Load theme
 antigen theme tobyjamesthomas/pi
@@ -73,6 +73,8 @@ export LESS=-r
 
 source /usr/share/nvm/init-nvm.sh
 
+export GOPATH=$HOME/go
+
 PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PATH=$PATH:$GOPATH/bin
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -81,13 +83,12 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$HOME/.vim/bundle/vim-live-latex-preview/bin
+export PATH=$PATH:$GOPATH/bin
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
-export GOPATH=$HOME/go
 
 source $HOME/.cargo/env
-# source /home/codedninja/.local/bin/virtualenvwrapper.sh
 
 # Dotfile management
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
